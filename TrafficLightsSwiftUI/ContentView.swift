@@ -18,11 +18,10 @@ struct ContentView: View {
     @State private var redOff = 0.4
     @State private var yellowOff = 0.4
     @State private var greenOff = 0.4
+    @State private var buttonTitle = "START"
+
 
     @State private var currentLight = CurrentLight.red
-//    @State private var redLight =  CircleShape(color: .red)
-//    @State private var yellowLight = CircleShape(color: .yellow)
-//    @State private var greenLight = CircleShape(color: .green)
     
     var body: some View {
         ZStack {
@@ -35,6 +34,9 @@ struct ContentView: View {
 
                 Spacer()
                 Button (action: {
+                    if buttonTitle == "START" {
+                        buttonTitle = "NEXT"
+                    }
                     switch currentLight {
                     case    .red:
                         redOff = lightOn
@@ -49,7 +51,7 @@ struct ContentView: View {
                         greenOff = lightOn
                         currentLight = .red
                     }
-                }) { Text("START")
+                }) { Text("\(buttonTitle)")
                         .padding()
                         .font(.title)
                         .foregroundColor(Color.white)
